@@ -1,0 +1,26 @@
+npm install 
+express 
+cors 
+dotenv 
+nodemon 
+jsonwebtoken 
+mongoose 
+bcryptjs 
+nodemailer 
+cookie-parser
+
+
+https://cloud.mongodb.com/v2/67e77dfd4eac3c3fed97d896#/overview
+
+git hub login
+sivamedia
+sivagit20
+
+mongodb+srv://sivamedia:<db_password>@cluster0.d122t7b.mongodb.net/
+mongodb+srv://sivamedia:0oYalEvmjNV6dzmy@cluster0.d122t7b.mongodb.net/
+
+https://app.brevo.com/settings/keys/smtp
+
+SMTP Server : smtp-relay.brevo.com
+Port : 587
+Login : 8b6730001@smtp-brevo.com
