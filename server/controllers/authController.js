@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/userModel.js';
 import transporter from '../config/nodemailer.js';
-
+import {EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE } from '../config/emailTemplate.js'
 //New User Registration
 export const register = async (req, res) => {
     const {name, email, password} = req.body;
@@ -29,7 +29,7 @@ export const register = async (req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            maxAge: 5 * 60 * 60 *  1000 
         })
         // Sending welcom email
         const mailOptions = {
@@ -68,7 +68,7 @@ export const login = async (req, res) => {
            httpOnly: true,
            secure: process.env.NODE_ENV === 'production',
            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-           maxAge: 7 * 24 * 60 * 60 * 1000
+           maxAge: 5 * 60 * 60 * 1000
        })
 
        return res.json({success: true, message: 'User Logged In Successfully'});
@@ -116,8 +116,9 @@ export const sendVerifyOtp = async(req, res)=> {
             from: process.env.SENDER_EMAIL,
             to: user.email,
             subject: 'Account Verification OTP for  MERN-AUTH-STACK',
-            text: `Your OTP is ${otp} to Verify your account MERN_AUTH_STACK at Sivamedia with  ${user.email}
-            your OTP Will Exipire by ${new Date(user.verifyOtpExpiredAt)}`
+            //text: `Your OTP is ${otp} to Verify your account MERN_AUTH_STACK at Sivamedia with  ${user.email}
+            //your OTP Will Exipire by ${new Date(user.verifyOtpExpiredAt)}`,
+            html : EMAIL_VERIFY_TEMPLATE.replace("{{otp}}",otp).replace("{{email}}",user.email)
 
         }
         await transporter.sendMail(mailOptions);
@@ -209,9 +210,9 @@ export const sendResetOtp = async(req, res)=> {
             from: process.env.SENDER_EMAIL,
             to: user.email,
             subject: 'Account Password Reset Verification OTP for  MERN-AUTH-STACK',
-            text: `Your OTP is ${otp} to Resetting  your password for account MERN_AUTH_STACK at Sivamedia with  ${user.email}
-            your OTP Will Exipire by ${new Date(user.resetOtpExpiredAt)}`
-
+           // text: `Your OTP is ${otp} to Resetting  your password for account MERN_AUTH_STACK at Sivamedia with  ${user.email}
+           // your OTP Will Exipire by ${new Date(user.resetOtpExpiredAt)}`
+            html: PASSWORD_RESET_TEMPLATE.replace("{{otp}}",otp).replace("{{email}}", email)
            }
            await transporter.sendMail(mailOptions);
 

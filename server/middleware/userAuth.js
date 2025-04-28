@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const userAuth = async (req, res, next) => {
-    
+    console.log("Auth Middleware",req.cookies)
     const {token} = req.cookies;
     if(!token) {
         return res.json({success: false, message: 'Not Authorized, Please Login Again'})
@@ -10,13 +10,13 @@ const userAuth = async (req, res, next) => {
     try {
 
         const tockenDecode =  jwt.verify(token, process.env.JWT_SECRET);
-        console.log("tockenDecode ===>" ,tockenDecode)
+        console.log("userAuth MiddleWare tockenDecode ===>" ,tockenDecode)
         if(tockenDecode.id) {
            // console.log("request.body  ===>" ,req.body)
             req.body.userId = tockenDecode.id  // not Working so add in body request by UI or Postman
             console.log(" userAuth MiddleWare ========>", req.body.userId)
         } else {
-            console.log("========>", req.body.userId)
+            console.log("userAuth MiddleWare user ID========>", req.body.userId)
             return res.json({success: false, message : 'Not Authorized, Please Login Again' })
         } 
         

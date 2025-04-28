@@ -27,10 +27,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 app.use(function (req, res, next) {
-    console.log("request.body server.js =======>" , req.body) 
+    console.log("request.body server.js use =======>" , req.originalUrl)
+    console.log("request.body server.js use =======>" , req.body) 
+    console.log("server.js use cookies",req.cookies)
     if(!req.body ) req.body = {}
-    console.log("request.body server.js =======>" , req.body) 
-    console.log("request.originalUrl server.js =======>" , req.originalUrl)
+    console.log("request.body server.js use =======>" , req.body) 
+
     next()
 }
 );
