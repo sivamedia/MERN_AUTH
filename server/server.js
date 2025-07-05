@@ -42,11 +42,13 @@ app.use(function (req, res, next) {
 app.get('/',(req,res)=> res.send("API Working ... "));
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
-app.listen(port, 'localhost', ()=> {
+
+const hostname = os.hostname();
+console.log(`Server hostname: ${hostname}`);
+
+app.listen(port, hostname,()=> {
                           console.log(`Server Started on PORT : ${port}`);
 
                       }
           );
 
- const hostname = os.hostname();
-console.log(`Server hostname: ${hostname}`);
