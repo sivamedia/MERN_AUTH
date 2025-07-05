@@ -40,7 +40,7 @@ app.use(function (req, res, next) {
 app.get('/',(req,res)=> res.send("API Working ... "));
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
-app.listen(port, ()=> {
+app.listen(port, 'localhost', ()=> {
                           console.log(`Server Started on PORT : ${port}`);
                           const address = app.address();
                           console.log(`Server running on ${address.family} at ${address.address}:${address.port}`);
