@@ -48,4 +48,5 @@ app.listen(port, 'localhost', ()=> {
                       }
           );
 
- 
+ const hostname = os.hostname();
+console.log(`Server hostname: ${hostname}`);
