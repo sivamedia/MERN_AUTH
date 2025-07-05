@@ -8,6 +8,8 @@ import connectDB from './config/mongodb.js';
 import authRouter from './routes/authRoute.js';
 import userRouter from "./routes/userRoutes.js";
 
+import os from 'os';
+
 const app = express();
 const port = process.env.PORT || 4000
 
