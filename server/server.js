@@ -40,6 +40,11 @@ app.use(function (req, res, next) {
 app.get('/',(req,res)=> res.send("API Working ... "));
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
-app.listen(port, ()=> console.log(`Server Started on PORT : ${port}`));
+app.listen(port, ()=> {
+                          console.log(`Server Started on PORT : ${port}`);
+                          const address = server.address();
+                          console.log(`Server running on ${address.family} at ${address.address}:${address.port}`);
+                      }
+          );
 
  
