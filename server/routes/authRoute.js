@@ -1,6 +1,13 @@
 import express from 'express'
-import { isAuthenticated, login, logout, register, resetPassword, sendResetOtp, sendVerifyOtp, verifyEmail } from '../controllers/authController.js';
 import { isAuthenticated } from '../controllers/authController.js';
+import { register } from '../controllers/auth/registerController.js';
+import { login   } from '../controllers/auth/loginController.js';
+import { logout } from '../controllers/auth/logoutController.js';
+import { verifyEmail } from '../controllers/auth/emailOtpVerification.js'
+import { sendVerifyOtp } from '../controllers/auth/sendOtpController.js';
+import { sendResetOtp } from '../controllers/auth/sendResetOtp.js';
+import { resetPassword } from '../controllers/auth/resetPassword.js';
+
 import userAuth from '../middleware/userAuth.js';
 
 const authRouter = express.Router();
