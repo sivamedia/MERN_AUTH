@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/userModel.js';
 import transporter from '../config/nodemailer.js';
+<<<<<<< Updated upstream
 import {EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE } from '../config/emailTemplate.js'
 //New User Registration
 export const register = async (req, res) => {
@@ -173,6 +174,9 @@ export const verifyEmail = async(req, res)=> {
         res.json({success: false, message: error.message })
     }
 }
+=======
+
+>>>>>>> Stashed changes
 
 // Check User Authenticated
 export const isAuthenticated = async(req, res) => {
@@ -184,6 +188,7 @@ export const isAuthenticated = async(req, res) => {
         
         return res.json({ success: true, message: error.message});
     }
+<<<<<<< Updated upstream
 }
 
 // Send Reset Password OTP
@@ -255,3 +260,6 @@ export const resetPassword = async(req, res) => {
     }
 }
 
+=======
+}
+>>>>>>> Stashed changes
